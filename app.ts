@@ -18,19 +18,19 @@ interface Greetable {
 }
 
 interface Prinable {
-  print(): void
+  print(): void;
 }
 
 class User implements Greetable, Prinable {
   constructor(public name: string, private age: number) {}
   print() {
-    console.log(this.name)
+    console.log(this.name);
   }
 }
 
 const user = new User("alex", 32);
 
-user.print()
+user.print();
 
 class Admin extends User {
   constructor(name: string, age: number, private premissions: string[]) {
@@ -66,15 +66,15 @@ function printResult(result, PrintMode: OutputMode) {
 // printResult(result);
 
 interface CalculationContainer {
-  res: number,
-  print(): void
+  res: number;
+  print(): void;
 }
 
-type Calculate = CalculationContainer[]
+type Calculate = CalculationContainer[];
 
 // type Calculate = { res: number; print: () => void }[];
 
-let results: Calculate = [];
+let results: Array<CalculationContainer> = [];
 
 button.addEventListener("click", () => {
   const num1 = +num1Input.value;
@@ -90,3 +90,12 @@ button.addEventListener("click", () => {
   printResult(results, OutputMode.CONSOLE);
   printResult(results[0].res, OutputMode.ALERT);
 });
+
+function logAndEcho<T>(val: T) {
+  console.log(val);
+  return val;
+}
+
+const splited = logAndEcho<string>('hi there!').split(' ')
+
+console.log(splited)
