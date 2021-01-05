@@ -6,8 +6,20 @@ function add(a: number, b: number) {
   return a + b;
 }
 
-function printResult(result) {
-  console.log(result);
+enum OutputMode {
+  CONSOLE,
+  ALERT,
+}
+
+type PrintMode1 = "console" | "alert";
+
+function printResult(result, PrintMode: OutputMode) {
+  if (PrintMode === OutputMode.CONSOLE) {
+    console.log(result);
+  }
+  if (PrintMode === OutputMode.ALERT) {
+    alert(result);
+  }
 }
 
 // const result = add(5, 3);
@@ -15,7 +27,7 @@ function printResult(result) {
 
 // printResult(result);
 
-type Calculate = { res: number; print: () => void }[]
+type Calculate = { res: number; print: () => void }[];
 
 let results: Calculate = [];
 
@@ -29,7 +41,7 @@ button.addEventListener("click", () => {
       console.log(this.res);
     },
   };
-  results.push(resultContainer)
-  printResult(results[0].res);
-  printResult(results)
+  results.push(resultContainer);
+  printResult(results, OutputMode.CONSOLE);
+  printResult(results[0].res, OutputMode.ALERT);
 });

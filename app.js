@@ -4,8 +4,18 @@ var button = document.querySelector("button");
 function add(a, b) {
     return a + b;
 }
-function printResult(result) {
-    console.log(result);
+var OutputMode;
+(function (OutputMode) {
+    OutputMode[OutputMode["CONSOLE"] = 0] = "CONSOLE";
+    OutputMode[OutputMode["ALERT"] = 1] = "ALERT";
+})(OutputMode || (OutputMode = {}));
+function printResult(result, PrintMode) {
+    if (PrintMode === OutputMode.CONSOLE) {
+        console.log(result);
+    }
+    if (PrintMode === OutputMode.ALERT) {
+        alert(result);
+    }
 }
 var results = [];
 button.addEventListener("click", function () {
@@ -19,6 +29,6 @@ button.addEventListener("click", function () {
         }
     };
     results.push(resultContainer);
-    printResult(results[0].res);
-    printResult(results);
+    printResult(results, OutputMode.CONSOLE);
+    printResult(results[0].res, OutputMode.ALERT);
 });
