@@ -1,9 +1,8 @@
-const num1Input = document.getElementById('num1') as HTMLInputElement;
-const num2Input = <HTMLInputElement>document.getElementById('num2');
-const button = document.querySelector('button')
+const num1Input = document.getElementById("num1") as HTMLInputElement;
+const num2Input = <HTMLInputElement>document.getElementById("num2");
+const button = document.querySelector("button");
 
-
-function add(a:number, b:number) {
+function add(a: number, b: number) {
   return a + b;
 }
 
@@ -11,17 +10,24 @@ function printResult(result) {
   console.log(result);
 }
 
-
-
 // const result = add(5, 3);
 // let isDone = false;
 
 // printResult(result);
 
-button.addEventListener('click', () => {
+type Calculate = { res: number; print: () => void }[]
+
+const result: Calculate = [];
+
+button.addEventListener("click", () => {
   const num1 = +num1Input.value;
   const num2 = +num2Input.value;
   const result = add(num1, num2);
-  printResult(result)
-})
-
+  const resultContainer = {
+    res: result,
+    print() {
+      console.log(this.res);
+    },
+  };
+  printResult(resultContainer.res);
+});
