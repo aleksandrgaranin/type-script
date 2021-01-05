@@ -7,7 +7,7 @@ function add(a, b) {
 function printResult(result) {
     console.log(result);
 }
-var result = [];
+var results = [];
 button.addEventListener("click", function () {
     var num1 = +num1Input.value;
     var num2 = +num2Input.value;
@@ -18,5 +18,7 @@ button.addEventListener("click", function () {
             console.log(this.res);
         }
     };
-    printResult(resultContainer.res);
+    results.push(resultContainer);
+    printResult(results[0].res);
+    printResult(results);
 });

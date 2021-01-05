@@ -17,7 +17,7 @@ function printResult(result) {
 
 type Calculate = { res: number; print: () => void }[]
 
-const result: Calculate = [];
+let results: Calculate = [];
 
 button.addEventListener("click", () => {
   const num1 = +num1Input.value;
@@ -29,5 +29,7 @@ button.addEventListener("click", () => {
       console.log(this.res);
     },
   };
-  printResult(resultContainer.res);
+  results.push(resultContainer)
+  printResult(results[0].res);
+  printResult(results)
 });
